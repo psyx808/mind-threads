@@ -1,20 +1,22 @@
-mind () {
-	d="/home/humanerror/Documentos/projects/mind-threads" 
-	f="$d/$(date +'%y/%m/%d')" 
-	clip="$d/clip" 
-	p="$d/$(date +'%y/%m')" 
-	m="$d/$(date +'%y/%m')" 
-	y="$d/$(date +'%y')" 
-	[ ! -d "$p" ] && mkdir -p "$p"
-	{
-		[ ! -f "$f" ] && {
-			[ -z "$1" ] || [ "$1" = "-a" ]
-		}
-	} && {
-		cp "$clip" "$f" && echo -e "\e\n[38;2;0;255;0mSuccessfully created\e[0m"
-	}
-	[ "$1" = "-a" ] && echo "$2 $3 '$4'" >> "$f"
-	[ "$1" = "-d" ] && bash "$m/$2"
-	[ "$1" = "-m" -a "$3" = "-d" ] && bash "$y/$2/$4"
-	[ -z "$1" ] && bash "$f"
-}
+#!/bin/bash 
+
+d="/home/$USER/.mind" 
+f="$d/$(date +'%y/%m/%d')" 
+m="$d/$(date +'%y/%m')"  
+
+case "$1" in
+  -a) 
+    xdotool key Ctrl+End;xdotool type i &
+    [ -e $d ] || mkdir $d  
+    [ ! -d "$m" ] && mkdir -p "$m"
+    nvim $f
+    xdotool type "i"
+  ;;
+  *)
+   #echo -e "MIND THREADS"
+   for file in $(find $d -type f|sort); do
+     echo -e "\e[96m$file"|sed "s,/home/$USER/.mind/,,"
+     echo -e "$(cat $file|sed '/./s/^/\\e[92m-\\e[0m /')\n" 
+  done
+  ;;
+esac
