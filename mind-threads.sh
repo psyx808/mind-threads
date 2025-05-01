@@ -13,7 +13,6 @@ case "$1" in
     xdotool type "i"
   ;;
   *)
-   #echo -e "MIND THREADS"
    for file in $(find $d -type f|sort); do
      echo -e "\e[96m$file"|sed "s,/home/$USER/.mind/,,"
      echo -e "$(cat $file|sed '/./s/^/\\e[92m-\\e[0m /')\n" 
