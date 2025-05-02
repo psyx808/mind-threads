@@ -3,7 +3,7 @@ You can add this script on your zshrc to write down ideas and tasks efficiently 
 
 Personally I use this as a thoughts diary.
 
-Requirements: nvim AND xdotool
+Requirements: nvim & xdotool
 
 Using:
   - mind: Shows your notes
