@@ -9,7 +9,7 @@ case "$1" in
     [ -e $d ] || mkdir $d  
     [ ! -d "$m" ] && mkdir -p "$m"
     echo "\n$(date +'%H:%M •  ')" >> $f
-    (xdotool key Ctrl+End; xdotool type i)& 
+    (xdotool key Ctrl+End;xdotool type i)& 
     nvim $f
   ;;
   *)
