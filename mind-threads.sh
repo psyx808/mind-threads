@@ -6,11 +6,11 @@ m="$d/$(date +'%y/%m')"
 
 case "$1" in
   -a) 
-    xdotool key Ctrl+End;xdotool type i &
     [ -e $d ] || mkdir $d  
     [ ! -d "$m" ] && mkdir -p "$m"
+    echo "\n$(date +'%H:%M •  ')" >> $f
+    (xdotool key Ctrl+End; xdotool type i)& 
     nvim $f
-    xdotool type "i"
   ;;
   *)
    for file in $(find $d -type f|sort); do
